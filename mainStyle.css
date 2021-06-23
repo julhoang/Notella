@@ -1,0 +1,52 @@
+html {
+    background-color: #EBECF1;
+}
+
+title {
+    margin-left: 20%;
+}
+
+.card {
+    border: solid black 1px;
+    margin-bottom: 1.5rem;
+    padding: 10px;
+    max-width: 70%;
+    align-items: center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.5rem;
+}
+
+.card_content {
+    border-left: solid 3px darkcyan;
+    padding-left: 20px;
+    margin-left: 10px;
+    margin-right: 20px;
+    text-align: justify;
+}
+
+.card_hostname {
+    font-style: italic;
+    text-underline-offset: 2px;
+    color: darkblue;
+    margin-bottom: 20px;
+}
+
+.card_title {
+    margin-top: 10px;
+}
+
+.slogan {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+.card_tagBar {
+    margin: 20px 0px 10px 0px;
+}
+
+.tagify {
+    display: inline-block;
+}
