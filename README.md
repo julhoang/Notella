@@ -17,19 +17,6 @@ This extension store data in your localStorage.
 3. Add personal note to the highlights
 4. Update UX and UI of the popup.
 
-## How to Install
-1. Download all files from this repository.
-2. Visit chrome://extensions/ 
-3. Turn on Developer Mode
-4. Choose "Load Unpacked" and choose the downloaded folder.
-5. Pin Notella Extension to your tab bar.
-
-## How to Use
-1. Simple highlight any text.
-2. Click onto the Notella Icon in the tab bar.
-3. Hit "Paste Selection"
-4. Click "See All Saved" to view all of your highlight.
-
 ## Attributions
 - The tag functionality is made possible by Tagify (https://github.com/yairEO/tagify). 
 - Image credits can be found inside "images" folder
