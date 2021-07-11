@@ -25,7 +25,7 @@ This extension store data in your localStorage.
 ## Future Update/Functionalities
 
 1. Add personal notes to the highlights, and a general one for the article
-2. Delete individual highglights
+2. Delete individual highlights
 3. PDF highlights
 4. Update UX/UI
 
