@@ -1,30 +1,41 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <script src="jquery-1.8.3.min.js"></script>
-    <script src="popup.js"></script>
-    <link rel="icon" href="favicon_io/favicon16.png" type="image/gif" sizes="16x16" />
+  <head>
+    <!-- <script src="jquery-1.8.3.min.js"></script> -->
+    <script type="module" src="popup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script>
+    <link
+      rel="icon"
+      href="favicon_io/favicon16.png"
+      type="image/gif"
+      sizes="16x16"
+    />
     <link rel="stylesheet" href="popup.css" />
     <style></style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="titleBar">
-        <h1>Notella</h1>
-        <label class="switch">
-            <input type="checkbox" checked />
-            <span class="slider round"></span>
-        </label>
+      <h1>Notella</h1>
+      <label class="switch">
+        <input type="checkbox" checked />
+        <span class="slider round"></span>
+      </label>
     </div>
     <div class="allData">
+      <div id="noData" display="block">
         <img src="images/Search-amico.png" width="60%" />
-        <p>No Saved Text</p>
-        <p>Start Highlighting now!</p>
-    </div>
-    <textarea id="text"> </textarea>
-    <button id="paste">Paste Selection</button>
-    <button id="newPage">See All Saved</button>
-</body>
+        <p id="noSaved">No Saved Text</p>
+        <p id="startHighlightNow">Start Highlighting now!</p>
+      </div>
 
+      <div class="highlight">
+        <p id="count"></p>
+        <p id="text"></p>
+      </div>
+    </div>
+    <!-- <button id="paste">Paste Selection</button> -->
+    <button id="newPage">View Notella Dashboard</button>
+    <!-- <button id="showHighlight">Show Highlights</button> -->
+  </body>
 </html>

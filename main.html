@@ -1,30 +1,74 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <link rel="shortcut icon" href="favicon_io/favicon.ico" />
-    <!-- import jQuery using CDN (Content Delivery Network) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>NOTELLA</title>
+  </head>
+
+  <body>
+    <div id="topBar">
+      <div id="logo">
+        <!-- <a href="" style="text-decoration: none; color: black">
+          <img src="/favicon_io/main_logo.png" alt="NOTELLA main logo" />
+        </a> -->
+        <h1>
+          <a href="" style="text-decoration: none; color: black">Notella</a>
+        </h1>
+      </div>
+      <h2 class="slogan">Bookmark App. Save to Savour.</h2>
+      <h3>by @JuliaHoang</h3>
+
+      <div class="controller">
+        <div id="searchBar">
+          <input id="searchField" type="text" placeholder="Search" /><button
+            id="searchButton"
+          >
+            <i class="icon" data-feather="search"></i>
+          </button>
+        </div>
+        <div class="hide" id="searchGuide">
+          Search anything - tags, titles, contents, article sources
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Container for Cards -->
+    <div id="bodyContainer">
+      <div class="leftColumn">
+        <div id="filterCol">
+          <p>Filter by Tags</p>
+        </div>
+      </div>
+
+      <div class="middleColumn">
+        <div id="allData"></div>
+      </div>
+
+      <div class="rightColumn"></div>
+    </div>
+
+    <!-- Loading All Scripts Here -->
+    <script type="module" src="mainScript.js"></script>
+    <script type="module" src="helpers/Tag-helper.js"></script>
     <script src="https://unpkg.com/@yaireo/tagify"></script>
     <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
-    <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
-    <title>NOTELLA</title>
-</head>
+    <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/mark.min.js"></script>
 
-<body>
-    <div id="logo">
-        <a href="" style="text-decoration:none; color:black;">
-            <img src="/favicon_io/main_logo.png" alt="NOTELLA main logo" />
-        </a>
-    </div>
-    <h2 class="slogan">Bookmark App. Save to Savour.</h2>
-    <p>by @JuliaHoang</p>
-    <div class="controller">
-    </div>
-    <div id="allData"></div>
-    <script src="mainScript.js"></script>
-    <script type="module" src="tagging.js"></script>
-    <link rel="stylesheet" href="mainStyle.css">
-</body>
-
+    <!-- Loading All CSS Here -->
+    <link
+      href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="mainStyle.css" />
+  </body>
 </html>

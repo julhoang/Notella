@@ -1,52 +1,219 @@
 html {
-    background-color: #EBECF1;
+  background-color: #ebecf1;
 }
 
 title {
-    margin-left: 20%;
+  margin-left: 20%;
+}
+
+#topBar {
+  width: 90%;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+  /* border: 1px solid red;
+  font-family: "Merriweather";
+  font-size: 22px;
+  font-weight: 700; */
+}
+
+h1 {
+  font-family: "Merriweather";
+  font-size: 22px;
+  font-weight: 700;
+}
+
+body {
+  font-family: "Roboto";
+}
+
+#bodyContainer {
+  /* border: 1px solid green; */
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.leftColumn {
+  border: 1px solid black;
+  position: sticky;
+  width: 20%;
+  max-width: 175px;
+  min-width: 100px;
+  display: inline-flex;
+}
+
+.middleColumn {
+  width: 70%;
+  display: inline-flex;
+}
+
+#allData {
+  width: 100%;
 }
 
 .card {
-    border: solid black 1px;
-    margin-bottom: 1.5rem;
-    padding: 10px;
-    max-width: 70%;
-    align-items: center;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 0.5rem;
+  border: solid black 1px;
+  margin-bottom: 1.5rem;
+  padding: 10px;
+  max-width: 70%;
+  align-items: center;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.5rem;
 }
 
 .card_content {
-    border-left: solid 3px darkcyan;
-    padding-left: 20px;
-    margin-left: 10px;
-    margin-right: 20px;
-    text-align: justify;
+  border-left: solid 3px darkcyan;
+  padding-left: 20px;
+  margin-left: 10px;
+  margin-right: 20px;
+  text-align: justify;
 }
 
 .card_hostname {
-    font-style: italic;
-    text-underline-offset: 2px;
-    color: darkblue;
-    margin-bottom: 20px;
+  font-style: italic;
+  text-underline-offset: 2px;
+  color: darkblue;
+  margin-bottom: 20px;
 }
 
 .card_title {
-    margin-top: 10px;
+  margin-top: 10px;
+  /* font-family: "Merriweather"; */
 }
 
 .slogan {
-    margin-top: 10px;
-    margin-bottom: 25px;
-    font-size: 1rem;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  font-size: 1rem;
 }
 
 .card_tagBar {
-    margin: 20px 0px 10px 0px;
+  margin: 20px 0px 10px 0px;
 }
 
 .tagify {
-    display: inline-block;
+  display: inline-block;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background-color: salmon;
+  font-weight: bolder;
+  width: 2rem;
+  height: 2rem;
+  text-align: -webkit-center;
+  font-size: 1.2rem;
+  margin: auto;
+  border-radius: 28%;
+  cursor: pointer;
+}
+
+#searchField {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-size: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  max-width: 250px;
+  min-width: 100px;
+  vertical-align: middle;
+  padding: 0.8em 0.5em;
+  line-height: normal;
+  cursor: text;
+  transition: 0.1s;
+  outline: none;
+  z-index: 100000;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid #1e90ff;
+}
+
+#searchField::placeholder {
+  font: rgba(0, 0, 0, 0.4);
+  font-size: 1.2rem;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  vertical-align: middle;
+  padding: none;
+}
+
+#searchBar {
+  width: fit-content;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.hide {
+  visibility: hidden;
+}
+
+#searchBar:hover + .hide {
+  /* display: block; */
+  visibility: visible;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+#searchBar:hover {
+  border: 1px solid #1e90ff;
+}
+
+svg.feather.feather-search.icon {
+  vertical-align: middle;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+#searchButton {
+  padding: 3px 3px 4px 0px;
+  vertical-align: middle;
+  border-radius: 0%;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-left: none;
+  background-color: #99ffff;
+  cursor: pointer;
+}
+
+#searchButton:focus {
+  background-color: #1e90ff;
+}
+
+/* Filter Panel */
+#filterCol {
+  width: 90%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filterCol p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.tagDiv {
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  border: 1px solid red;
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
+  width: 80%;
+  border-radius: 0.3rem;
+  outline: 0;
+}
+
+.tagName {
+  padding-right: 20px;
+}
+
+.tagValue {
+  position: absolute;
+  right: 5px;
+  border-left: 1px solid black;
+  padding-left: 5px;
 }

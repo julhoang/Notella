@@ -5,23 +5,52 @@ html {
 }
 body {
   width: 300px;
+  /* min-height: 200px; */
   margin: 15px;
+  height: fit-content;
 }
 
 .titleBar {
-  position: fixed;
+  position: relative;
   height: fit-content;
-  width: 90%;
+  width: 100%;
+  display: block;
+  background: none;
 }
 
-textarea {
-  width: 250px;
-  height: 100px;
+.allData {
+  display: block;
+  position: relative;
+  margin: 20px 0 20px 0;
+}
+
+#newPage {
+  position: relative;
+  bottom: 15px;
+  margin-top: 15px;
+}
+
+.highlightText {
+  margin: 10px 0 20px 10px;
+  border-left: 2px solid green;
+  padding-left: 10px;
+}
+
+#noData {
+  text-align: center;
+  width: 100%;
 }
 
 h1 {
-  position: absolute;
   margin: 0;
+}
+
+#count {
+  font-weight: 600;
+}
+
+#noSaved {
+  font-weight: 600;
 }
 
 .switch {
@@ -31,6 +60,7 @@ h1 {
   height: 17px; /* 34 */
   right: 0px;
   top: 8px;
+  z-index: 10000;
 }
 
 .switch input {
@@ -84,4 +114,9 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+mark {
+  background: orange;
+  color: black;
 }

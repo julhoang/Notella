@@ -1,91 +1,47 @@
-// MAIN POPUP/EXTENSION SCRIPT
+/* -------
+  File: popup.js
+  
+  --> Script to handle Notella popup (popup.html)
+---------- */
 
-window.onload = function() {
-    var pasteBtn = document.getElementById("paste");
-    pasteBtn.onclick = function() {
-        updateStorage();
-    };
+window.onload = function () {
+  var openBtn = document.getElementById("newPage");
+  openBtn.onclick = function () {
+    window.open("main.html");
+  };
+};
 
-    var openBtn = document.getElementById("newPage");
-    openBtn.onclick = function() {
-        window.open("main.html");
-    };
-}
+popUp_loadHighlights();
 
-function updateStorage() {
-    // locate current window page using Query
-    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-        // console.log(tabs[0].id, tabs[0].title, tabs[0].favIconUrl, tabs[0].url, tabs[0].url.hostname);
+function popUp_loadHighlights() {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    var key = tabs[0].title;
 
-        // insert script onto that page
-        chrome.tabs.executeScript(tabs[0].id, { code: `document.getSelection().toString()` }, (result) => {
+    if (localStorage.getItem(key) == null) return;
 
-            // UPDATE POPUP HTML
-            var text = document.getElementById('text');
-            text.innerHTML = result;
+    document.getElementById("noData").style.display = "none";
 
-            // SAVE DATA INTO LOCALSTORAGE
+    if (localStorage.getItem(key) !== undefined) {
+      var contents = JSON.parse(localStorage.getItem(key)).content;
 
-            // get time stamp
-            var today = new Date();
-            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            today = months[today.getMonth()] + " " + today.getDate() + ", " + today.getFullYear() + ".";
+      contents = contents.sort((x, y) => x.index - y.index);
 
-            
-            var tab = tabs[0];
+      document.getElementById("count").innerText =
+        "You have " + contents.length + " highlights from this page.";
 
-            // create an array to store data
-            var dataArray = {};
+      console.table(contents);
 
-            
-            // find out if there is a similar article already saved
-            // if NO --> create new entry
-            // if YES --> append content to existing entry
-            if (localStorage.getItem(tab.title) == null) {
-
-                var url = new URL(tab.url);
-                var domain = url.hostname;
-                var UID = getUID();
-
-                dataArray["UID"] = UID;
-                dataArray["title"] = tab.title;
-                dataArray["host"] = url.hostname;
-                dataArray["content"] = result;
-                dataArray["link"] = url;
-                dataArray["tags"] = "";
-                dataArray["favicon"] = tab.favIconUrl;
-                dataArray["date"] = today;
-
-                localStorage.setItem(tab.title, JSON.stringify(dataArray));
-
-            } else {
-
-                let currentEntry = JSON.parse(localStorage.getItem(tab.title));
-
-                let newContent = [];
-                newContent.push(JSON.parse(localStorage.getItem(tab.title)).content);
-                newContent.push(result);
-
-                currentEntry.content = newContent;
-
-                localStorage.setItem(tab.title, JSON.stringify(currentEntry));
-            }
-
-        });
-    });
-}
-
-function getUID() {
-    var UID = 0;
-
-    var currentUID = localStorage.getItem("currentUID");
-
-    if (currentUID == NaN || currentUID == null) {
-        currentUID = -1;
+      for (let i = 0; i < contents.length; i++) {
+        popUp_createHighlightDiv(contents[i].selection);
+      }
     }
+  });
+}
 
-    UID = parseInt(currentUID, 10) + 1;
-    localStorage.setItem("currentUID", UID);
+function popUp_createHighlightDiv(content) {
+  var container = document.createElement("div");
+  container.className = "highlightText";
+  container.innerText = content;
 
-    return UID;
+  document.getElementById("text").appendChild(container);
 }
