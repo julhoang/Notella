@@ -1,6 +1,6 @@
 ![Notella](https://github.com/julhoang/Notella/blob/main/favicon_io/main_logo.png)
 
-# alo
+# alo, co y de conflict
 ### Bookmark App. Save to Savour!
 
 Notella is a Chrome Extension that allows user to save highlight texts across webpages.
