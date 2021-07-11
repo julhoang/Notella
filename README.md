@@ -10,7 +10,8 @@ This extension store data in your localStorage.
 
 ## Preview
 
-![Notella Main Page](https://github.com/julhoang/Notella/blob/main/images/notella_mainpage_1.PNG?raw=true)
+![Notella Main Page](https://github.com/julhoang/Notella/blob/main/images/notella_mainpage_2.PNG)
+![Notella PopUp and Website Highlight](https://github.com/julhoang/Notella/blob/main/images/web_highlight_1.jpg)
 
 ## Current Functionalities
 
