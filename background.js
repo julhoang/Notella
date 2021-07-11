@@ -5,6 +5,8 @@
     1. Add Notella to Chrome Context Menu
     2. Retrieve Selected Text and update to Local Storage (of Notella extension)
     3. Send Selected Text to contentScript.js so that files create highlights.
+
+    4. TEST TEST TEST
 ---------- */
 
 if (localStorage.getItem("currentUID") == null) {
