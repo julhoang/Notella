@@ -437,8 +437,6 @@ console.log("from TextTip.js");
                 return;
               }
 
-              console.log("TextTip:  show");
-
               _this.open = true;
 
               _this.tipEl.classList.add("texttip--show");
@@ -454,7 +452,6 @@ console.log("from TextTip.js");
               _this.open = false;
 
               _this.tipEl.classList.remove("texttip--show");
-              console.log("TextTip:  hide");
 
               _this.tipEl.setAttribute("aria-hidden", "false"); // Callback
 

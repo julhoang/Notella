@@ -2,9 +2,9 @@
   File: background.js
   
   Functionalities:
-    1. Add Notella to Chrome Context Menu
-    2. Retrieve Selected Text and update to Local Storage (of Notella extension)
-    3. Send Selected Text to contentScript.js so that files create highlights.
+    1. Add Notella-View Dashboard to Chrome Context Menu
+    2. Retrieve SAVED highlights from localStorage and send to contentScript.js to create highlights.
+    3. Receive NEW range info from contentScript.js and save to localStorage.
 ---------- */
 
 if (localStorage.getItem("currentUID") == null) {
@@ -18,11 +18,6 @@ if (localStorage.getItem("currentUID") == null) {
 // ADD NOTELLA TO CHROME CONTEXT MENU
 
 var contextMenus = {};
-var contextOnSelection = {
-  id: "addHighlight",
-  title: "Add Highlight",
-  contexts: ["selection"],
-};
 
 contextMenus.viewDashboard = chrome.contextMenus.create(
   { title: "Notella - View Dashboard" },
@@ -33,26 +28,26 @@ contextMenus.viewDashboard = chrome.contextMenus.create(
   }
 );
 
-chrome.contextMenus.create(contextOnSelection);
-
 chrome.contextMenus.onClicked.addListener(contextMenuHandler);
 
 function contextMenuHandler(info, tab) {
   if (info.menuItemId == contextMenus.viewDashboard) {
     window.open("main.html");
-  } else if (info.menuItemId == "addHighlight" && info.selectionText) {
-    // METHOD CALLINGs
-    updateStorage();
   }
 }
 
 // ------------ END OF CONTEXT MENU CODE ----------
 
 // listening for contentscript
-// when it is ready --> send data from Notella localStorage
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  // when contentScript is ready --> send data from Notella localStorage to ContentScript
   if (request.status == "done") {
     getDataFromStorage();
+  }
+
+  // when user select new text (handle by contentScript), receive range data
+  if (request.request == "saveThisData") {
+    addToStorage(request.data);
   }
 });
 
@@ -89,65 +84,55 @@ function sendData(arr) {
   );
 }
 
-// ------------------------------
-// ADD SELECTED TEXT and RELATED INFO ONTO LOCAL STORAGE
-function updateStorage() {
+function addToStorage(result) {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.executeScript(
-      tabs[0].id,
-      {
-        code: `getSelectedText(document.getSelection());`,
-      },
-      (result) => {
-        result = JSON.parse(result);
+    var tab = tabs[0];
 
-        var content = [];
+    result = JSON.parse(result); // rangeInfo: rangeUID, selected text and index
 
-        console.log("confirm index: ", result);
-        content.push({
-          UID: result.UID,
-          selection: result.selection,
-          index: result.index,
-        });
+    var content = [];
 
-        var tab = tabs[0];
-        var dataArray = {};
+    content.push({
+      UID: result.UID,
+      selection: result.selection,
+      index: result.index,
+      color: result.color,
+    });
 
-        // find out if there is a similar article already saved
-        // if NO --> create new entry
-        // if YES --> append content to existing entry
-        if (localStorage.getItem(tab.title) == null) {
-          var url = new URL(tab.url);
-          var UID = getUID();
+    var dataArray = {};
 
-          dataArray = {
-            UID: UID,
-            title: tab.title,
-            host: url.hostname,
-            content: content,
-            link: url,
-            tags: "",
-            favicon: tab.favIconUrl,
-            date: getDate(),
-          };
+    // find out if there is a similar article already saved
+    // if NO --> create new entry
+    if (localStorage.getItem(tab.title) == null) {
+      var url = new URL(tab.url);
+      var UID = getUID();
 
-          localStorage.setItem(tab.title, JSON.stringify(dataArray));
-        } else {
-          let currentEntry = JSON.parse(localStorage.getItem(tab.title));
+      dataArray = {
+        UID: UID,
+        title: tab.title,
+        host: url.hostname,
+        content: content,
+        link: url,
+        tags: "",
+        favicon: tab.favIconUrl,
+        date: getDate(),
+      };
 
-          let newContentArr = [];
-          newContentArr.push(
-            JSON.parse(localStorage.getItem(tab.title)).content
-          );
+      localStorage.setItem(tab.title, JSON.stringify(dataArray));
 
-          newContentArr.push(content);
+      // if YES --> append content to existing entry
+    } else {
+      let currentEntry = JSON.parse(localStorage.getItem(tab.title));
 
-          newContentArr = newContentArr.flat(Infinity);
-          currentEntry.content = newContentArr;
-          localStorage.setItem(tab.title, JSON.stringify(currentEntry));
-        }
-      }
-    );
+      let newContentArr = [];
+      newContentArr.push(JSON.parse(localStorage.getItem(tab.title)).content);
+
+      newContentArr.push(content);
+
+      newContentArr = newContentArr.flat(Infinity);
+      currentEntry.content = newContentArr;
+      localStorage.setItem(tab.title, JSON.stringify(currentEntry));
+    }
   });
 }
 

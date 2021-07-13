@@ -1,104 +1,104 @@
 .texttip {
-	position: absolute;
-	pointer-events: none;
-	background: #fff;
-	transform: translate(-50%, -12px);
-	transition: none;
-	opacity: 0;	
+  position: absolute;
+  pointer-events: none;
+  background: #fff;
+  transform: translate(-50%, -12px);
+  transition: none;
+  opacity: 0;
 }
 
 .texttip--theme-default {
-	border-radius: 7px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, .55);
-	transform: translate(-50%, -34px);
-	border: 2px solid #000;
+  border-radius: 7px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.55);
+  transform: translate(-50%, -34px);
+  border: 1px solid rgb(109, 109, 109);
 }
 
 .texttip--theme-default::after {
-	content: '';
-	position: absolute;
-	left: 50%;
-	top: 100%;
-	transform: translate(-50%, 0);
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 6px 9px 0 9px;
-	border-color: #000 transparent transparent transparent;
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, 0);
+  width: 0;
+  height: 10;
+  border: 0;
+  border-style: solid;
+  border-width: 6px 9px 0 9px;
+  border-color: rgb(90, 90, 90) transparent transparent transparent;
 }
 
 .texttip--show {
-	pointer-events: auto;
-	transform: translate(-50%, -12px);
-	opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -12px);
+  opacity: 1;
 }
 
 .texttip--theme-default.texttip--show {
-	transition: opacity .3s, transform .3s;
+  transition: opacity 0.3s, transform 0.3s;
 }
 
 .texttip__inner {
-	position: relative;
-	display: flex;
-	overflow: hidden;
+  position: relative;
+  display: flex;
+  overflow: hidden;
 }
 
 .texttip--theme-default .texttip__inner {
-	border-radius: 7px;
+  border-radius: 7px;
 }
 
 .texttip__btn {
-	position: relative;
-	cursor: pointer;
-	padding: .4em;
-	transition: none;
-	background: #fff;
+  position: relative;
+  cursor: pointer;
+  padding: 0.3em 0.5em 0.3em 0.5em;
+  transition: none;
+  background: #fff;
 }
 
 .texttip--theme-default .texttip__btn {
-	transform: translate(0, 1.5em);
+  transform: translate(0, 1.5em);
 }
 
 .texttip--theme-default .texttip__btn:hover {
-	background: #00e3f4;
+  background: rgb(93, 88, 88);
 }
 
 .texttip--theme-default.texttip--show .texttip__btn {
-	transition-property: transform;
-	transition-duration: 200ms;
-	transform: translate(0, 0);
+  transition-property: transform;
+  transition-duration: 150ms;
+  transform: translate(0, 0);
 }
 
 .texttip__btn-cover {
-	position: absolute;
-	display: block;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .texttip__btn:last-child {
-	margin: 0;
+  margin: 0;
 }
 
 .texttip[data-textip-iconformat="url"] img {
-	display: block;
-	width: auto;
-	height: 1.5em;
+  display: block;
+  width: auto;
+  height: 1em;
 }
 
 .texttip[data-textip-iconformat="svgsprite"] svg {
-	display: block;
-	height: 1.5em;
-	width: 1.5em;
-	pointer-events: none;
+  display: block;
+  height: 1.5em;
+  width: 1.5em;
+  pointer-events: none;
 }
 
 .texttip[data-textip-iconformat="font"] i {
-	display: block;
-	font-size: 1.5em;
+  display: block;
+  font-size: 1.5em;
 }
-
 
 /*# sourceMappingURL=TextTip.css.map*/

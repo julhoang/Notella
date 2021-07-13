@@ -1,3 +1,19 @@
 .notella-highlight {
-  background-color: yellow;
+  background-color: #fbbe64;
+}
+
+.yellow-light {
+  background-color: #fbbe64;
+}
+
+.green-light {
+  background-color: #4eeca0;
+}
+
+.blue-light {
+  background-color: #82d2ff;
+}
+
+.pink-light {
+  background-color: #ffa7ac;
 }

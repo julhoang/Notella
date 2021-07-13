@@ -8,6 +8,7 @@
     "32": "favicon_io/favicon32.png",
     "192": "favicon_io/favicon192.png"
   },
+  "web_accessible_resources": ["colors/*.svg"],
   "background": {
     "persistent": true,
     "scripts": ["background.js"]
@@ -15,8 +16,8 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["contentScript.js"],
-      "css": ["highlight.css"]
+      "js": ["TextTip.js", "contentScript.js"],
+      "css": ["TextTip.css", "highlight.css"]
     }
   ],
   "browser_action": {

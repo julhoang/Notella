@@ -2,18 +2,38 @@
   File: contentScript.js
   
   Functionalities:
-    1. Restore highlights if exist
-    1. Process document.getSelection(), triggered by background.js when user wants to highlight text
+    1. Restore SAVED highlights if exist
+    1. Process document.getSelection()
     2. Create new highlights
     3. Save Range data onto the website's localStorage
+    4. Also send Range data to background script to save in Notella's storage
 ---------- */
 
 window.onload = function () {
+  // create the highlight popup bar
+  const tooltip = new TextTip({
+    minLength: 1,
+    buttons: [
+      {
+        title: "yellow-light",
+        icon: "colors/yellow-light.svg",
+        callback: success,
+      },
+      {
+        title: "green-light",
+        icon: "colors/green-light.svg",
+        callback: success,
+      },
+      { title: "blue-light", icon: "colors/blue-light.svg", callback: success },
+      { title: "pink-light", icon: "colors/pink-light.svg", callback: success },
+    ],
+  });
+
+  // upon finish loading, send a signal to background.js to receive back saved range UIDS
   chrome.runtime.sendMessage({ status: "done" }, function (response) {});
 
   chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     if (msg.data !== undefined) {
-      //  alert("received!!!");
       var message = JSON.parse(msg.data);
       var UID = message.UID;
       var sel = message.selection;
@@ -25,28 +45,42 @@ window.onload = function () {
   });
 };
 
+function success() {
+  var color = this.title;
+  var rangeInfo = getSelectedText(document.getSelection(), color); // getSelectedText() calls highlight()
+  sendMessageToBackground(rangeInfo);
+}
+
+function sendMessageToBackground(jsonMessage) {
+  chrome.runtime.sendMessage(
+    { request: "saveThisData", data: jsonMessage },
+    function (response) {}
+  );
+}
+
 var domList = Array.prototype.slice.call(
   document.body.getElementsByTagName("*")
 );
 
-function getSelectedText(selection) {
+function getSelectedText(selection, color) {
   var text = selection.toString();
   const range = selection.getRangeAt(0);
-  var myRange = addToStorage(selection, range);
+  var myRange = addToStorage(selection, range, color);
 
   console.log("myRange: ", myRange);
   const result = {
     UID: myRange.UID,
     selection: text,
     index: myRange.index,
+    color: color,
   };
 
-  highlight(selection, range);
+  highlight(selection, range, color);
 
-  return JSON.stringify(result); // return to Background.js
+  return JSON.stringify(result); // range info to return to Background.js
 }
 
-function addToStorage(sel, range) {
+function addToStorage(sel, range, color) {
   let UID = getUID();
   let key = "Notella_" + UID;
 
@@ -69,6 +103,7 @@ function addToStorage(sel, range) {
     endOffset: range.endOffset,
 
     selectionText: sel.toString(),
+    color: color,
   };
 
   if (range.commonAncestorContainer.nodeName == "#text") {
@@ -84,7 +119,7 @@ function addToStorage(sel, range) {
   return dataArray;
 }
 
-function highlight(sel, range) {
+function highlight(sel, range, color) {
   if (typeof sel == "string") {
     document.getSelection().empty();
     document.getSelection().addRange(range);
@@ -103,6 +138,7 @@ function highlight(sel, range) {
   if (startContainer === endContainer) {
     const span = document.createElement("span");
     span.className = "notella-highlight";
+    span.classList.add(color);
     range.surroundContents(span);
     nodes.push(startContainer);
     document.getSelection().empty();
@@ -151,6 +187,7 @@ function highlight(sel, range) {
 
     const span = document.createElement("span");
     span.className = "notella-highlight";
+    span.classList.add(color);
     span.append(document.createTextNode(text));
     const { parentNode } = node;
 
@@ -209,7 +246,18 @@ function restoreHighlight(nodeInfo) {
     myRange.setEnd(endContainer, nodeInfo.endOffset);
   }
 
-  highlight(nodeInfo.selectionText, myRange);
+  highlight(nodeInfo.selectionText, myRange, nodeInfo.color);
+}
+
+function isMatch(target, nodeValue, innerHTML) {
+  if (nodeValue == target || innerHTML == target) return true;
+
+  nodeValue = nodeValue == null ? "" : nodeValue;
+  innerHTML = innerHTML == null ? "" : innerHTML;
+
+  if (nodeValue.includes(target) || innerHTML.includes(target)) return true;
+
+  return false;
 }
 
 function findAncestor(tagName, innerHTML) {
@@ -225,24 +273,12 @@ function findAncestor(tagName, innerHTML) {
   }
 }
 
-function isMatch(target, nodeValue, innerHTML) {
-  if (nodeValue == target || innerHTML == target) return true;
-
-  nodeValue = nodeValue == null ? "" : nodeValue;
-  innerHTML = innerHTML == null ? "" : innerHTML;
-
-  if (nodeValue.includes(target) || innerHTML.includes(target)) return true;
-
-  return false;
-}
-
 function findStartEndNodes(childNodes, innerHTML) {
   for (let i = 0; i < childNodes.length; i++) {
     if (isMatch(innerHTML, childNodes[i].nodeValue, childNodes[i].innerHTML)) {
       if (childNodes[i].nodeType == 1) {
         return findStartEndNodes(childNodes[i].childNodes, innerHTML);
       } else {
-        //   console.log("-----FOUND start/end node.-----");
         return childNodes[i];
       }
     }
