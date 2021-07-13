@@ -1,6 +1,5 @@
-// TAGIFY CODE
 /* -------
-  File: contentScript.js
+  File: Tag-helper.js
   
   Functionalities:
     1. Create tag bars (using Tagify.js)
