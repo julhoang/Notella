@@ -16,11 +16,12 @@ This extension store data in your localStorage.
 ## Current Functionalities
 
 1. Persistent Website highlights (highlights are restored upon website revisit)
-2. Easier to add highlights: Select text --> Right-click --> Add Highlight
-3. Search function
-4. Add Tags to each articles
-5. Search by Tag (filter)
-6. Contents are sorted by appearance on original website
+2. Easier to add highlights: Select text --> Pick your highlight color inside the tool tip!
+3. Color-code any articles with yellow, green, blue and pink.
+4. Search function
+5. Add Tags to each articles
+6. Search by Tag (filter)
+7. Contents are sorted by appearance on original website
 
 ## Future Update/Functionalities
 
@@ -28,8 +29,11 @@ This extension store data in your localStorage.
 2. Delete individual highlights
 3. PDF highlights
 4. Update UX/UI
+5. Allow adding tag and quick notes to article inside pop-up.
+6. Change highlight color
 
 ## Attributions
 
-- The tag functionality is made possible by Tagify (https://github.com/yairEO/tagify).
+- The tag functionality is made possible by <a href="https://github.com/yairEO/tagify">Tagify</a>.
+- Tool tip is made possible by <a href="https://github.com/AdamJaggard/text-tip">TextTip.js</a>.
 - Image credits can be found inside "images" folder
