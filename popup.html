@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- <script src="jquery-1.8.3.min.js"></script> -->
-    <script type="module" src="popup.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <link
       rel="icon"
       href="favicon_io/favicon16.png"
       type="image/gif"
       sizes="16x16"
     />
-    <link rel="stylesheet" href="popup.css" />
-    <style></style>
   </head>
 
   <body>
@@ -36,5 +31,21 @@
     </div>
 
     <button id="newPage">View Notella Dashboard</button>
+    <div id="tagBar">
+      <p></p>
+    </div>
+
+    <!-- Loading All Scripts Here -->
+    <script src="https://unpkg.com/@yaireo/tagify"></script>
+    <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+    <script type="module" src="popup.js"></script>
+
+    <!-- Loading All CSS Here -->
+    <link rel="stylesheet" href="popup.css" />
+    <link
+      href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
+      rel="stylesheet"
+      type="text/css"
+    />
   </body>
 </html>

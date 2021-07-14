@@ -30,12 +30,6 @@ body {
   margin-top: 15px;
 }
 
-.highlightText {
-  margin: 10px 0 20px 10px;
-  border-left: 2px solid green;
-  padding-left: 10px;
-}
-
 #noData {
   text-align: center;
   width: 100%;
@@ -119,4 +113,41 @@ input:checked + .slider:before {
 mark {
   background: orange;
   color: black;
+}
+
+/* Tag bar */
+
+#tagBar p {
+  display: inline-block;
+}
+
+#tagBar {
+  padding: 10px 0px 10px 0px;
+}
+
+.tagify {
+  display: inline-block;
+}
+
+/* highlight colors */
+.highlightText {
+  margin: 10px 0 20px 10px;
+  border-left: 2px solid;
+  padding-left: 10px;
+}
+
+.yellow-light {
+  border-color: #fbbe64;
+}
+
+.green-light {
+  border-color: #4eeca0;
+}
+
+.blue-light {
+  border-color: #82d2ff;
+}
+
+.pink-light {
+  border-color: #ffa7ac;
 }
