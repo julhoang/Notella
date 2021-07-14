@@ -7,6 +7,7 @@
     3. Receive NEW range info from contentScript.js and save to localStorage.
 ---------- */
 
+// initialise upon 1st use
 if (localStorage.getItem("currentUID") == null) {
   localStorage.setItem("sorting", "down");
   localStorage.setItem("currentUID", -1);
