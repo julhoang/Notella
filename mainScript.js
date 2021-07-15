@@ -13,7 +13,7 @@ window.addEventListener("storage", () => {
 import {
   makeCard,
   addAllDeleteButtons,
-  createElement,
+  makeElement,
 } from "./helpers/DOM-helper.js";
 
 import {
@@ -141,8 +141,8 @@ function displayFilterPanel() {
     var tagDiv = document.createElement("div");
     tagDiv.classList.add("tag_" + key);
     tagDiv.classList.add("tagDiv");
-    createElement(key, "span", "tagName", tagDiv);
-    createElement(value, "span", "tagValue", tagDiv);
+    makeElement(key, "span", "tagName", tagDiv);
+    makeElement(value, "span", "tagValue", tagDiv);
 
     tagDiv.onclick = function (event) {
       var tag = this.classList[0].replace("tag_", "");

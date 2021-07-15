@@ -9,7 +9,7 @@
 export var localArchive = [];
 export var needFilterPanelUpdate = false;
 
-import { makeCard, addAllDeleteButtons, createElement } from "./DOM-helper.js";
+import { makeCard, addAllDeleteButtons, makeElement } from "./DOM-helper.js";
 
 export function addTagsToAllCards(archive) {
   archive = retrieveStorageData();
@@ -178,8 +178,8 @@ function addToFilterPanel(newInput) {
   var tagDiv = document.createElement("div");
   tagDiv.classList.add("tag_" + newInput);
   tagDiv.classList.add("tagDiv");
-  createElement(newInput, "span", "tagName", tagDiv);
-  createElement(1, "span", "tagValue", tagDiv);
+  makeElement(newInput, "span", "tagName", tagDiv);
+  makeElement(1, "span", "tagValue", tagDiv);
   tagDiv.onclick = function (event) {
     var tag = this.classList[0].replace("tag_", "");
     searchTag(tag);

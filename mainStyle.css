@@ -65,12 +65,49 @@ body {
   border-radius: 0.5rem;
 }
 
+.content_div {
+  position: relative;
+}
+
 .card_content {
-  border-left: solid 3px darkcyan;
   padding-left: 20px;
   margin-left: 10px;
-  margin-right: 20px;
-  text-align: justify;
+  margin-right: 10px;
+  text-align: left;
+  width: 80%;
+  display: inline-block;
+}
+
+span.deleteBtn {
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  right: 0px;
+  /* width: 10%; */
+  text-align: right;
+  padding: 5px;
+  margin: 7px 0px 6px 0px;
+  border: 1px solid #868484;
+  border-radius: 5px;
+  font-weight: 300;
+}
+
+/* highlight colors */
+
+.yellow-light {
+  border-left: solid 3px #fbbe64;
+}
+
+.green-light {
+  border-left: solid 3px #4eeca0;
+}
+
+.blue-light {
+  border-left: solid 3px #82d2ff;
+}
+
+.pink-light {
+  border-left: solid 3px #ffa7ac;
 }
 
 .card_hostname {
@@ -99,7 +136,7 @@ body {
   display: inline-block;
 }
 
-.deleteBtn {
+.articleDeleteBtn {
   position: absolute;
   top: -12px;
   right: -12px;
