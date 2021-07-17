@@ -152,16 +152,5 @@ function getUID() {
 }
 
 function getDate() {
-  var today = new Date();
-  let months =
-    "January,February,March,April,May,June,Julu,August,September,October,November,December";
-  today =
-    months.split(",")[today.getMonth()] +
-    " " +
-    today.getDate() +
-    ", " +
-    today.getFullYear() +
-    ".";
-
-  return today;
+  return new Date().toString();
 }
