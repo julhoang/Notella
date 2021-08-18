@@ -7,11 +7,25 @@
 window.onload = function () {
   var openBtn = document.getElementById("newPage");
   openBtn.onclick = function () {
-    window.open("main.html");
+    window.open("../mainPage/main.html");
   };
 };
 
-loadHighlights();
+chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+  console.log("check mine :", location.host);
+  console.log("check host: ", tabs[0].url);
+
+  // don't show popup on Notella pages
+  if (tabs[0].url.includes(location.host)) {
+    document.getElementById("allData").innerText =
+      "Please open another page to start highlight! 😄";
+    document.getElementById("view-homepage").remove();
+    document.getElementById("tagBar").remove();
+    document.getElementById("power").remove();
+  } else {
+    loadHighlights();
+  }
+});
 
 function loadHighlights() {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -31,8 +45,10 @@ function loadHighlights() {
 
       contents = contents.sort((x, y) => x.index - y.index);
 
-      document.getElementById("count").innerText =
-        "You have " + contents.length + " highlights from this page.";
+      document.getElementById("count").innerHTML =
+        "Highlight Count: <span id='countBadge' class='badge bg-light'> " +
+        contents.length +
+        "</span>";
 
       console.table(contents);
 
@@ -47,7 +63,7 @@ function createHighlightDiv(content, color) {
   var container = document.createElement("div");
   container.className = "highlightText";
   container.classList.add(color);
-  container.innerText = content;
+  container.innerHTML = trimText(content);
 
   document.getElementById("text").appendChild(container);
 }
@@ -139,4 +155,26 @@ function getRandomColor() {
 // apply color to tags
 function transformTag(tagData) {
   tagData.style = "--tag-bg:" + getRandomColor();
+}
+
+function trimText(text) {
+  var words = text.split(" ");
+  var word;
+  var result = [];
+  var count = 0;
+
+  if (text.length <= 40) return text;
+
+  for (word of words) {
+    if (count + word.length <= 30) {
+      result.push(word);
+      count += word.length;
+    } else {
+      result.push('<span class="three-dot">...</span>');
+      result.push(words[words.length - 2]);
+      result.push(words[words.length - 1]);
+      console.log("check result: ", result.join(" "));
+      return result.join(" ");
+    }
+  }
 }

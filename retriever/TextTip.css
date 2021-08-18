@@ -5,6 +5,7 @@
   transform: translate(-50%, -12px);
   transition: none;
   opacity: 0;
+  z-index: 999999999999 !important;
 }
 
 .texttip--theme-default {
@@ -12,6 +13,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.55);
   transform: translate(-50%, -34px);
   border: 1px solid rgb(109, 109, 109);
+
+  overflow: hidden;
 }
 
 .texttip--theme-default::after {
@@ -48,10 +51,14 @@
   border-radius: 7px;
 }
 
+.texttip__inner:first-child {
+  border-radius: 0px;
+}
+
 .texttip__btn {
   position: relative;
   cursor: pointer;
-  padding: 0.3em 0.5em 0.3em 0.5em;
+  padding: 0.3rem 0.6em 0.3rem 0.6em;
   transition: none;
   background: #fff;
 }
@@ -61,7 +68,7 @@
 }
 
 .texttip--theme-default .texttip__btn:hover {
-  background: rgb(93, 88, 88);
+  background: rgb(77, 77, 77);
 }
 
 .texttip--theme-default.texttip--show .texttip__btn {
@@ -84,9 +91,14 @@
 }
 
 .texttip[data-textip-iconformat="url"] img {
-  display: block;
   width: auto;
   height: 1em;
+  height: 1rem !important;
+  width: 1rem !important;
+  margin: 0rem 0.2rem;
+  font-size: 1rem !important;
+  display: inline-block !important;
+  vertical-align: baseline !important;
 }
 
 .texttip[data-textip-iconformat="svgsprite"] svg {
@@ -102,3 +114,25 @@
 }
 
 /*# sourceMappingURL=TextTip.css.map*/
+
+/* My highlights */
+
+.notella-highlight {
+  background-color: #fbbe64;
+}
+
+.yellow-light {
+  background-color: #fbbe64;
+}
+
+.green-light {
+  background-color: #4eeca0;
+}
+
+.blue-light {
+  background-color: #82d2ff;
+}
+
+.pink-light {
+  background-color: #ffa7ac;
+}

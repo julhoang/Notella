@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      html {
+        visibility: hidden;
+        opacity: 0;
+      }
+    </style>
+    <link rel="shortcut icon" href="../assets/favicons/favicon.ico" />
+    <title>NOTELLA</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <script src="js/jquery.js"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div id="db-wrapper">
+      <div id="page-content">
+        <!-- HORIZONTAL TOP NAVBAR / HEADER / SEARCH BAR-->
+
+        <a class="navbar-brand" id="brand" href="main.html"> Notella </a>
+
+        <!-- PAGE MAIN CONTAINER -->
+        <div class="bg-white pt-10 pb-21" id="header-background">
+          <div id="background-blur"></div>
+        </div>
+        <div class="container-fluid mt-n22 px-6">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+              <!-- Page header -->
+              <div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="mb-2 mb-lg-0">
+                    <h3 class="mb-0 fw-bold text-white pageHeading">⭐ Main Dashboard</h3>
+                  </div>
+                  <div>
+                    <!-- TODO create CTA, perhaps Share? -->
+                    <a href="main.html" class="btn btn-white cta d-none" style="margin-right: 2rem">
+                      Share Your Highlights
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Overview Bar -->
+            <div class="row" id="overViewBar"></div>
+          </div>
+
+          <div class="row">
+            <div class="d-flex justify-content-between align-items-center" style="margin-top: 2rem">
+              <h3 class="mb-0 fw-bold" style="font-size: x-large">All Articles</h3>
+            </div>
+            <!-- CARDS SECTION -->
+            <!-- data-toolbar-align="right" -->
+            <div class="row my-5">
+              <div class="table-responsive" id="tableDiv">
+                <table
+                  id="table"
+                  data-toggle="table"
+                  data-search="true"
+                  data-search-accent-neutralise="true"
+                  data-search-align="left"
+                  data-search-highlight="true"
+                  data-buttons-class="secondary"
+                  data-buttons-prefix="btn"
+                  data-buttons-align="right"
+                  data-show-columns="true"
+                  data-show-fullscreen="true"
+                  data-pagination="true"
+                  data-fixed-columns="true"
+                  data-fixed-number="2"
+                  data-fixed-right-number="1"
+                  data-card-view="false"
+                  class="table mb-0"
+                >
+                  <thead>
+                    <tr>
+                      <th data-field="id" scope="col" data-sortable="true">#</th>
+                      <th data-field="article" scope="col" data-sortable="true">Article</th>
+                      <th data-field="source" scope="col" data-sortable="true">Source</th>
+                      <th
+                        data-field="highlight"
+                        scope="col"
+                        class="text-nowrap"
+                        data-sortable="true"
+                      >
+                        Highlights #
+                      </th>
+                      <th data-field="tag" scope="col" class="text-nowrap" data-sortable="true">
+                        Tags #
+                      </th>
+                      <th data-field="project" scope="col" data-sortable="true">Project</th>
+                      <th
+                        data-field="operate"
+                        scope="col"
+                        data-formatter="operateFormatter"
+                        data-events="operateEvents"
+                        data-searchable="false"
+                      >
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableBody"></tbody>
+                </table>
+              </div>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                aria-labelledby="modal-title"
+                aria-hidden="true"
+                role="dialog"
+              >
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="modal-title">
+                        Are you sure you want to delete item?
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div id="modal-text" class="modal-body">
+                      You won't be able to revert change.
+                    </div>
+                    <div id="modal-hidden-info" class="d-none"></div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-light text-dark" data-bs-dismiss="modal">
+                        Close
+                      </button>
+                      <button type="button" id="modal-deleteBtn" class="btn btn-primary">
+                        Delete Article
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- External JavaScript files -->
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"
+      ></script>
+      <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.js"></script>
+
+      <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/sticky-header/bootstrap-table-sticky-header.min.js"></script>
+      <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
+      <script src="https://unpkg.com/@yaireo/tagify"></script>
+      <script src="https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js"></script>
+
+      <!-- Internal JavaScript files -->
+      <script type="module" src="mainScript.js"></script>
+      <script src="js/table.js"></script>
+      <script src="js/interactions.js"></script>
+
+      <!-- Loading All CSS Here -->
+      <link
+        href="https://unpkg.com/@yaireo/tagify/dist/tagify.css"
+        rel="stylesheet"
+        type="text/css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/sticky-header/bootstrap-table-sticky-header.css"
+      />
+      <link
+        href="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.css"
+        rel="stylesheet"
+      />
+      <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+      />
+      <link rel="stylesheet" href="../theme.css" />
+    </div>
+  </body>
+</html>

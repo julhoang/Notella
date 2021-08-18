@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;500;600;700;800;900&display=swap");
+
+html {
+  margin: 0px;
+  padding: 0;
+  border: none;
+}
+body {
+  width: 300px;
+  /* min-height: 200px; */
+  margin: 15px;
+  height: fit-content;
+  font-family: "Poppins", "sans-serif";
+}
+
+.titleBar {
+  position: relative;
+  height: fit-content;
+  width: 100%;
+  display: block;
+  background: none;
+}
+
+#allData {
+  display: block;
+  position: relative;
+  margin: 20px 0 20px 0;
+}
+
+#newPage {
+  position: relative;
+  bottom: 15px;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+#noData {
+  text-align: center;
+  width: 100%;
+}
+
+h1 {
+  margin: 0;
+  display: inline-block;
+}
+
+#count {
+  font-weight: 600;
+}
+
+#noSaved {
+  font-weight: 600;
+}
+
+.form-check.form-switch {
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 2px;
+}
+
+mark {
+  background: orange;
+  color: black;
+}
+
+/* Tag bar */
+
+#tagBar p {
+  display: inline-block;
+}
+
+#tagBar {
+  padding: 10px 0px 10px 0px;
+}
+
+.tagify {
+  display: inline-block;
+}
+
+/* highlight colors */
+.highlightText {
+  margin: 10px 15px 20px 10px;
+  border-left: 2px solid;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-weight: 500;
+  padding-bottom: 10px;
+  font-size: 0.8rem;
+}
+
+.yellow-light {
+  border-color: #fbbe64;
+}
+
+.green-light {
+  border-color: #4eeca0;
+}
+
+.blue-light {
+  border-color: #82d2ff;
+}
+
+.pink-light {
+  border-color: #ffa7ac;
+}
+
+.three-dot {
+  letter-spacing: 1px;
+  padding: 0px 3px;
+}
+
+#countBadge {
+  font-size: large;
+  margin-left: 10px;
+  color: black;
+  border: 1px solid;
+}

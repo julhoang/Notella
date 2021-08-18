@@ -1,8 +1,5 @@
-console.log("from TextTip.js");
-
 (function webpackUniversalModuleDefinition(root, factory) {
-  if (typeof exports === "object" && typeof module === "object")
-    module.exports = factory();
+  if (typeof exports === "object" && typeof module === "object") module.exports = factory();
   else if (typeof define === "function" && define.amd) define([], factory);
   else if (typeof exports === "object") exports["TextTip"] = factory();
   else root["TextTip"] = factory();
@@ -29,12 +26,7 @@ console.log("from TextTip.js");
       });
       /******/
       /******/ // Execute the module function
-      /******/ modules[moduleId].call(
-        module.exports,
-        module,
-        module.exports,
-        __webpack_require__
-      );
+      /******/ modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
       /******/
       /******/ // Flag the module as loaded
       /******/ module.l = true;
@@ -83,13 +75,7 @@ console.log("from TextTip.js");
     /******/ __webpack_require__.t = function (value, mode) {
       /******/ if (mode & 1) value = __webpack_require__(value);
       /******/ if (mode & 8) return value;
-      /******/ if (
-        mode & 4 &&
-        typeof value === "object" &&
-        value &&
-        value.__esModule
-      )
-        return value;
+      /******/ if (mode & 4 && typeof value === "object" && value && value.__esModule) return value;
       /******/ var ns = Object.create(null);
       /******/ __webpack_require__.r(ns);
       /******/ Object.defineProperty(ns, "default", {
@@ -134,9 +120,7 @@ console.log("from TextTip.js");
     /******/
     /******/
     /******/ // Load entry module and return exports
-    /******/ return __webpack_require__(
-      (__webpack_require__.s = "./src/TextTip.ts")
-    );
+    /******/ return __webpack_require__((__webpack_require__.s = "./src/TextTip.ts"));
     /******/
   })(
     /************************************************************************/
@@ -166,17 +150,13 @@ console.log("from TextTip.js");
               return TextTip;
             }
           );
-          /* harmony import */ var _TextTip_css__WEBPACK_IMPORTED_MODULE_0__ =
-            __webpack_require__(/*! ./TextTip.css */ "./src/TextTip.css");
+          /* harmony import */ var _TextTip_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+            /*! ./TextTip.css */ "./src/TextTip.css"
+          );
           /* harmony import */ var _TextTip_css__WEBPACK_IMPORTED_MODULE_0___default =
-            /*#__PURE__*/ __webpack_require__.n(
-              _TextTip_css__WEBPACK_IMPORTED_MODULE_0__
-            );
+            /*#__PURE__*/ __webpack_require__.n(_TextTip_css__WEBPACK_IMPORTED_MODULE_0__);
           function _typeof(obj) {
-            if (
-              typeof Symbol === "function" &&
-              typeof Symbol.iterator === "symbol"
-            ) {
+            if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
               _typeof = function _typeof(obj) {
                 return typeof obj;
               };
@@ -257,10 +237,7 @@ console.log("from TextTip.js");
                 throw new Error("TextTip: Cannot find supplied scope");
               }
 
-              _this.scopeEl.setAttribute(
-                "data-texttip-scope-id",
-                _this.id.toString()
-              );
+              _this.scopeEl.setAttribute("data-texttip-scope-id", _this.id.toString());
             });
 
             _defineProperty(this, "_setupTooltip", function () {
@@ -285,7 +262,6 @@ console.log("from TextTip.js");
 
                 switch (_this.config.iconFormat) {
                   case IconFormat.URL:
-                    btn.icon = chrome.runtime.getURL(btn.icon);
                     btnEl.innerHTML = '<img src="'
                       .concat(btn.icon, '" alt="')
                       .concat(btn.title, '">');
@@ -319,14 +295,8 @@ console.log("from TextTip.js");
               });
 
               var tooltip = document.createElement("div");
-              tooltip.classList.add(
-                "texttip",
-                "texttip--theme-" + _this.config.theme
-              );
-              tooltip.setAttribute(
-                "data-textip-iconformat",
-                _this.config.iconFormat
-              );
+              tooltip.classList.add("texttip", "texttip--theme-" + _this.config.theme);
+              tooltip.setAttribute("data-textip-iconformat", _this.config.iconFormat);
               tooltip.setAttribute("data-texttip-id", _this.id.toString());
               tooltip.setAttribute("role", "tooltip");
               tooltip.setAttribute("aria-hidden", "true");
@@ -337,16 +307,11 @@ console.log("from TextTip.js");
             });
 
             _defineProperty(this, "_setupEvents", function () {
-              document.addEventListener(
-                "selectionchange",
-                _this._onSelectionChanged
-              );
+              document.addEventListener("selectionchange", _this._onSelectionChanged);
 
-              _this.tipEl
-                .querySelectorAll(".texttip__btn")
-                .forEach(function (btn, index) {
-                  btn.addEventListener("click", _this._onButtonClick);
-                });
+              _this.tipEl.querySelectorAll(".texttip__btn").forEach(function (btn, index) {
+                btn.addEventListener("click", _this._onButtonClick);
+              });
             });
 
             _defineProperty(this, "_onSelectionChanged", function (event) {
@@ -364,10 +329,7 @@ console.log("from TextTip.js");
               var selStr = selection.toString();
               var selLength = selStr.length;
 
-              if (
-                selLength < _this.config.minLength ||
-                selLength > _this.config.maxLength
-              ) {
+              if (selLength < _this.config.minLength || selLength > _this.config.maxLength) {
                 return false;
               }
 
@@ -423,10 +385,7 @@ console.log("from TextTip.js");
               event.preventDefault();
               event.stopPropagation();
               var btn = event.currentTarget;
-              var btnIndex = parseInt(
-                btn.getAttribute("data-texttip-btn-index"),
-                10
-              );
+              var btnIndex = parseInt(btn.getAttribute("data-texttip-btn-index"), 10);
               var selection = window.getSelection();
 
               _this.config.buttons[btnIndex].callback(selection.toString());
@@ -460,12 +419,8 @@ console.log("from TextTip.js");
             });
 
             if (typeof window.getSelection === "undefined") {
-              console.log(
-                "TextTip: Selection api not supported in this browser"
-              );
-              throw new Error(
-                "TextTip: Selection api not supported in this browser"
-              );
+              console.log("TextTip: Selection api not supported in this browser");
+              throw new Error("TextTip: Selection api not supported in this browser");
             }
 
             if (_typeof(config) !== "object") {
@@ -480,13 +435,10 @@ console.log("from TextTip.js");
               throw new Error("TextTip: No buttons supplied");
             }
 
-            this.isMobileOS = /iPad|iPhone|iPod|Android/i.test(
-              navigator.userAgent
-            );
+            this.isMobileOS = /iPad|iPhone|iPod|Android/i.test(navigator.userAgent);
             this.id = TextTip._getID(); // Hide on mobile OS's, they have their own conflicting tooltips
 
-            if (this.config.mobileOSBehaviour === "hide" && this.isMobileOS)
-              return;
+            if (this.config.mobileOSBehaviour === "hide" && this.isMobileOS) return;
 
             this._setupScope();
 

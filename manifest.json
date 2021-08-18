@@ -1,30 +1,30 @@
 {
   "name": "Notella",
-  "version": "0.2",
+  "version": "3",
   "description": "Website Highlight Extension",
   "manifest_version": 2,
   "icons": {
-    "16": "favicon_io/favicon16.png",
-    "32": "favicon_io/favicon32.png",
-    "192": "favicon_io/favicon192.png"
+    "16": "assets/favicons/favicon16.png",
+    "32": "assets/favicons/favicon32.png",
+    "192": "assets/favicons/favicon192.png"
   },
-  "web_accessible_resources": ["colors/*.svg"],
+  "web_accessible_resources": ["assets/colors/*.svg"],
   "background": {
     "persistent": true,
-    "scripts": ["background.js"]
+    "scripts": ["retriever/background.js"]
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["TextTip.js", "contentScript.js"],
-      "css": ["TextTip.css", "highlight.css"]
+      "js": ["retriever/TextTip.js", "retriever/contentScript.js"],
+      "css": ["retriever/TextTip.css"]
     }
   ],
   "browser_action": {
     "default_title": "Notella",
-    "default_popup": "popup.html",
-    "default_icon": "favicon_io/favicon16.png"
+    "default_popup": "popup/popup.html",
+    "default_icon": "assets/favicons/favicon16.png"
   },
   "permissions": ["tabs", "<all_urls>", "activeTab", "storage", "contextMenus"],
-  "content_security_policy": "script-src 'self' https://ajax.googleapis.com  https://cdn.jsdelivr.net https://unpkg.com/@yaireo/tagify https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/sticky-header/bootstrap-table-sticky-header.min.js https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.js https://ajax.googleapis.com https://cdn.jsdelivr.net https://unpkg.com/@yaireo/tagify https://unpkg.com/@yaireo/tagify/dist/tagify.polyfills.min.js; object-src 'self'"
 }
