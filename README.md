@@ -1,4 +1,4 @@
-![Notella](https://github.com/julhoang/Notella/blob/main/favicon_io/main_logo.png)
+![Notella](https://github.com/julhoang/Notella/blob/main/assets/favicons/main_logo.png)
 
 ### Bookmark App. Save to Savour!
 

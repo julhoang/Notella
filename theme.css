@@ -2222,7 +2222,6 @@ textarea {
 .navbar-brand {
   padding-top: 0.32422rem;
   padding-bottom: 0.32422rem;
-  margin-right: 1rem;
   font-size: 1.17188rem;
   white-space: nowrap;
 }
@@ -5018,17 +5017,49 @@ tags.tagify {
   margin-left: 0 !important;
 }
 
-#brand {
+#main-header {
   position: absolute;
-  top: 0;
   left: 50%;
+  right: 50%;
+  background: transparent !important;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+#brand {
   font-weight: 700;
-  color: goldenrod;
   font-size: 1.5rem;
+  color: black;
+  font-family: "merriweather";
+  border: 2px solid black;
+  border-radius: 0.6rem;
+  padding: 3px 15px;
+  background: white;
+}
+
+#focus-brand {
+  position: absolute;
+    left: 50%;
+    right: 50%;
+    width: max-content;
+    margin-left: -3.5rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: black;
+  font-family: "merriweather";
+  border: 2px solid black;
+  border-radius: 0.6rem;
+  padding: 3px 15px;
+  background: white;
 }
 
 #header-background {
-  background-image: url(images/papyrus-darken.jpg), url(images/papyrus-darken-flip.jpg);
+  background-image: url(assets/images/papyrus-darken.jpg),
+    url(assets/images/papyrus-darken-flip.jpg);
   background-repeat: repeat-x;
 }
 
