@@ -174,6 +174,7 @@ function addToStorage(result) {
         tags: "",
         project: "",
         favicon: tab.favIconUrl,
+        note: "",
         date: getDate(),
       };
 

@@ -23,6 +23,8 @@ addTagBar();
 
 addProject();
 
+addNote();
+
 // --------------
 // FUNCTIONS
 
@@ -34,8 +36,34 @@ function createBlockquote() {
     var text = document.createElement("blockquote");
     text.innerHTML = content.selection.replaceAll("<", "[").replaceAll(">", "]");
     text.className = content.color;
+
+    // dropdown
+    text.appendChild(createActionMenu(text));
+
     allData.appendChild(text);
   });
+}
+
+function createActionMenu(targetDiv) {
+  var container = makeElement("", "div", "dropdown dropstart", targetDiv);
+  var a = makeElement(
+    '<i class="icon-xxs" data-feather="more-vertical"></i>',
+    "a",
+    "text-muted text-primary-hover",
+    container
+  );
+  a.href = "#";
+  a.role = "button";
+  a.id = "dropdownTask";
+  a.setAttribute("data-bs-toggle", "dropdown");
+  a.setAttribute("aria-haspopup", true);
+  a.setAttribute("aria-expanded", false);
+
+  var dropdown = makeElement("", "div", "dropdown-menu", container);
+  dropdown.setAttribute("aria-labelledby", "dropdownTask");
+  var item1 = makeElement("Delete Highlight", "a", "dropdown-item", dropdown);
+
+  return container;
 }
 
 function addTagBar() {
@@ -109,7 +137,6 @@ function addProject() {
 
   projectBarDiv.value = masterInfo.project;
 
-  // var placeholder = "Pick an existing project, or type to add a new one.";
   if (activeProjects === null || (activeProjects.length == 1 && activeProjects[0] == "")) {
     placeholder = "Type to create new Project.";
   }
@@ -125,16 +152,16 @@ function addProject() {
 
   // ----- tagify code ------
   var tagify = new Tagify(projectBarDiv, {
-    delimiters: null, // add new tags when a comma or a space character is entered
+    delimiters: null,
     whitelist: activeProjects,
     editTags: false,
     maxTags: 1,
     placeholder: placeholder,
     dropdown: {
-      maxItems: 20, // <- mixumum allowed rendered suggestions
-      classname: "tags-look", // <- custom classname for this dropdown, so it could be targeted
+      maxItems: 20,
+      classname: "tags-look",
       enabled: 0, // <- show suggestions on focus
-      closeOnSelect: true, // <- do not hide the suggestions dropdown once an item has been selected
+      closeOnSelect: true,
     },
     keepInvalidTags: false,
     autoComplete: {
@@ -202,6 +229,56 @@ function projectEditBtn(tagify) {
   };
 
   return editBtn;
+}
+
+function makeElement(message, elementType, className, targetNode) {
+  var ele = document.createElement(elementType);
+  ele.innerHTML = message;
+  ele.className = className;
+  targetNode.appendChild(ele);
+  return ele;
+}
+
+function addNote() {
+  var noteArea = document.getElementById("noteArea");
+  noteArea.value = masterInfo.note;
+
+  var text = noteArea.value;
+  var lines = text.split(/\r|\r\n|\n/);
+  noteArea.rows = lines.length + 1;
+
+  if (noteArea.rows > 10) noteArea.rows = 10;
+
+  var saveNoteBtn = document.getElementById("saveNote");
+  var area = document.getElementById("noteArea");
+
+  saveNoteBtn.onclick = function () {
+    masterInfo.note = area.value;
+    localStorage.setItem(articleName, JSON.stringify(masterInfo));
+    saveNoteBtn.innerText = "Saved";
+    saveNoteBtn.classList.add("btn-primary");
+    saveNoteBtn.classList.add("text-white");
+  };
+
+  // Change button back to Save when user change the input
+
+  if (area.addEventListener) {
+    area.addEventListener(
+      "input",
+      function () {
+        saveNoteBtn.innerText = "Save";
+        saveNoteBtn.classList.remove("btn-primary");
+        saveNoteBtn.classList.remove("text-white");
+      },
+      false
+    );
+  } else if (area.attachEvent) {
+    area.attachEvent("onpropertychange", function () {
+      saveNoteBtn.innerText = "Save";
+      saveNoteBtn.classList.remove("btn-primary");
+      saveNoteBtn.classList.remove("text-white");
+    });
+  }
 }
 
 // generate a random color (in HSL format)

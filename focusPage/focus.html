@@ -62,13 +62,26 @@
                 <span id="source"></span>
               </div>
               <div class="overview" id="project-overview">
-                <div class="overviewBold">Projects:</div>
+                <div class="overviewBold">Project:</div>
                 <span id="project"></span>
               </div>
               <div class="overview">
                 <div class="overviewBold">Tags:</div>
                 <span id="tags"></span>
               </div>
+              <div class="overview">
+                <label for="noteArea" class="overviewBold">My Note: </label>
+                <div class="input-group" style="margin-top: 1rem">
+                  <textarea
+                    class="form-control"
+                    id="noteArea"
+                    aria-label="With textarea"
+                  ></textarea>
+
+                  <button class="btn btn-outline-primary" id="saveNote" type="button">Save</button>
+                </div>
+              </div>
+
               <div id="allData"></div>
             </div>
           </div>

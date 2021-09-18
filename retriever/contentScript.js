@@ -45,7 +45,7 @@ window.onload = function () {
     if (msg.data !== undefined) {
       var message = JSON.parse(msg.data);
       var UID = message.UID;
-      var sel = message.selection;
+      // var sel = message.selection;
 
       var key = "Notella_" + UID;
       var range = JSON.parse(localStorage.getItem(key));
