@@ -6,7 +6,7 @@ Notella is a Chrome Extension that allows user to save highlight texts across we
 All saved highlights are visually organized in the main Notella page.
 This extension store data in your localStorage.
 
-#### This work is in production! :)
+#### This work is in production! Not yet available on Chrome Store.
 
 <!-- ## Preview
 
@@ -15,13 +15,19 @@ This extension store data in your localStorage.
 
 ## Current Functionalities
 
-✔️ Persistent Website highlights (highlights are restored upon website revisit)
+✔️ Persistent Website highlights (highlights are restored upon website revisit) 
+
 ✔️ Easy to add highlights: Select text --> Pick your highlight color inside the tool tip
 or right click and select highlight option
+
 ✔️ Color-code any articles with yellow, green, blue and pink.
+
 ✔️ Add Tags to each articles
+
 ✔️ Assign Project for better organization
+
 ✔️ Add personal notes to each article
+
 ✔️ Contents are sorted by appearance on original website
 
 ## Upcoming Updates
